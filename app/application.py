@@ -28,3 +28,13 @@ if st.button("Predict Today's VIX"):
     scaled_input = scaler.transform(user_input)
     prediction = model.predict(scaled_input)[0]
     st.success(f"Predicted VIX for Today: {prediction:.2f}")
+    if prediction < 15:
+        message = "🟢 Market is calm. Low volatility expected."
+    elif 15 <= prediction < 25:
+        message = "🟡 Moderate risk. Keep an eye on the market."
+    elif 25 <= prediction < 35:
+        message = "🟠 High volatility. Be cautious with investments."
+    else:
+        message = "🔴 Extreme fear in the market. High risk of swings."
+
+    st.write(message)
